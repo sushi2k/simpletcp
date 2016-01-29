@@ -2,9 +2,10 @@ from simpletcp.serversocket import ServerSocket
 
 class TCPServer:
     # Mode specifies the IP address the server socket binds to.
-    # mode can be one of two values:
+    # mode can be one of two special values:
     # localhost -> (127.0.0.1)
     # public ->    (0.0.0.0)
+    # otherwise, mode is interpreted as an IP address.
     # port specifies the port that the server socket binds to.
     # read_callback specifies the function that is called when
     # the server reads incoming data.

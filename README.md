@@ -13,6 +13,7 @@ simpleTCP is written in pure Python 3. It has no external dependencies. To insta
 simpleTCP just requires that you specify:
 
 * the mode (local or public) of your server
+  * your server can also be bound to a specific IP address
 * the port of your server
 * what happens when your server receives data
 
@@ -42,7 +43,7 @@ Callback functions should take three arguments:
 
 The `TCPServer` constructor takes three arguments:
 
-1. The `mode`. There are two valid `modes`: `"localhost"` and `"public"`. They are aptly named --- `"localhost"` means run the server on `127.0.0.1`. Therefore, the server is only visible on the machine on which it is running. `"public"` means run the server on `0.0.0.0` --- make it visible to anything that can see the machine on which it is running.
+1. The `mode`. There are two special `modes`: `"localhost"` and `"public"`. They are aptly named --- `"localhost"` means run the server on `127.0.0.1`. Therefore, the server is only visible on the machine on which it is running. `"public"` means run the server on `0.0.0.0` --- make it visible to anything that can see the machine on which it is running. If mode is not `"localhost"` or `"public"`, then it is interpreted as an IP address.
 2. The port. For development, pick a high (four-digit) number.
 3. The callback function. This function is called whenever the server receives data.
 

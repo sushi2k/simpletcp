@@ -7,15 +7,16 @@ class ServerSocket:
     def __init__(self, mode, port, read_callback, max_connections, recv_bytes):
         # Handle the socket's mode.
         # The socket's mode determines the IP address it binds to.
-        # mode can be one of two values:
+        # mode can be one of two special values:
         # localhost -> (127.0.0.1)
         # public ->    (0.0.0.0)
+        # otherwise, mode is interpreted as an IP address.
         if mode == "localhost":
             self.ip = mode
         elif mode == "public":
             self.ip = socket.gethostname()
         else:
-            raise ValueError
+            self.ip = mode
         # Handle the socket's port.
         # This should be a high (four-digit) for development.
         self.port = port
