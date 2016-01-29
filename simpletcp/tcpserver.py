@@ -15,8 +15,11 @@ class TCPServer:
     # is a tunnel of data to send to the socket that it receieved from.
     # The third argument must be data, which is a string of bytes
     # that the server received.
-    def __init__(self, mode, port, read_callback):
-        self.serversocket = ServerSocket(mode, port, read_callback)
+    def __init__(self, mode, port, read_callback,
+                 maximum_connections=5, recv_bytes=2048):
+        self.serversocket = ServerSocket(
+            mode, port, read_callback, maximum_connections, recv_bytes
+        )
 
     def run(self):
         self.serversocket.run()

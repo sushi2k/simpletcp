@@ -4,9 +4,7 @@ import socket
 
 class ServerSocket:
 
-    RECV_BYTES = 2048
-
-    def __init__(self, mode, port, read_callback, max_connections=5):
+    def __init__(self, mode, port, read_callback, max_connections, recv_bytes):
         # Handle the socket's mode.
         # The socket's mode determines the IP address it binds to.
         # mode can be one of two values:
@@ -35,6 +33,9 @@ class ServerSocket:
         self._max_connections = max_connections
         if type(self._max_connections) != int:
             raise ValueError
+        # Save the number of bytes to be received each time we read from
+        # a socket
+        self.recv_bytes = recv_bytes
 
     def run(self):
         # Start listening
@@ -66,7 +67,7 @@ class ServerSocket:
                     IPs[client_socket] = client_ip
                 else:
                     # Someone sent us something! Let's receive it.
-                    data = sock.recv(ServerSocket.RECV_BYTES)
+                    data = sock.recv(self.recv_bytes)
                     if data:
                         # Call the callback
                         self.callback(IPs[sock], queues[sock], data)
