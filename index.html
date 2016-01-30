@@ -19,7 +19,10 @@
     </section>
 
     <section class="main-content">
-      <pre><code>from simpletcp.tcpserver import TCPServer
+      <h3>
+<a id="echo" class="anchor" href="#echo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Echo</h3>
+
+<pre><code>from simpletcp.tcpserver import TCPServer
 
 def echo(ip, queue, data):
     queue.put(data)
@@ -28,10 +31,19 @@ server = TCPServer("localhost", 5000, echo)
 server.run()
 </code></pre>
 
+<h3>
+<a id="send" class="anchor" href="#send" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Send</h3>
+
+<pre><code>from simpletcp.clientsocket import ClientSocket
+
+s1 = ClientSocket("localhost", 5000, single_use=False)
+response = s1.send("Hello, World!")
+</code></pre>
+
 <h1>
 <a id="simpletcp" class="anchor" href="#simpletcp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>simpleTCP</h1>
 
-<p>simpleTCP is a minimal non-blocking TCP server written for Python 3.</p>
+<p>simpleTCP is a minimal non-blocking TCP server written for Python 3. Check out <a href="https://github.com/gragas/simpletcp/wiki">the Wiki</a> to see what's new.</p>
 
 <h3>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
@@ -98,6 +110,17 @@ server.run()
 <li>The port. For development, pick a high (four-digit) number.</li>
 <li>The callback function. This function is called whenever the server receives data.</li>
 </ol>
+
+<h4>
+<a id="sending-data-to-the-server" class="anchor" href="#sending-data-to-the-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sending data to the server</h4>
+
+<p>To send data to the server, create a <code>ClientSocket</code> and send away!</p>
+
+<pre><code>from simpletcp.clientsocket import ClientSocket
+
+s1 = ClientSocket("localhost", 5000, single_use=False)
+response = s1.send("Hello, World!")
+</code></pre>
 
 <h3>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h3>
