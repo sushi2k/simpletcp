@@ -1,6 +1,7 @@
 import queue
 import select
 import socket
+import sys
 
 class ServerSocket:
 
@@ -21,6 +22,7 @@ class ServerSocket:
         # This should be a high (four-digit) for development.
         self.port = port
         if type(self.port) != int:
+            print("port must be an int", file=sys.stderr)
             raise ValueError
         # Actually create an INET, STREAMing socket.socket.
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,6 +35,7 @@ class ServerSocket:
         # Save the number of maximum connections.
         self._max_connections = max_connections
         if type(self._max_connections) != int:
+            print("max_connections must be an int", file=sys.stderr)
             raise ValueError
         # Save the number of bytes to be received each time we read from
         # a socket
@@ -45,9 +48,11 @@ class ServerSocket:
         # of writers (sockets that will be written to).
         readers = [self._socket]
         writers = []
-        # Create a dictionary of Queues for data to be sent.
+        # Create a dictionary of queue.Queues for data to be sent.
+        # This dictionary maps sockets to queue.Queue objects
         queues = dict()
         # Create a similar dictionary that stores IP addresses.
+        # This dictionary maps sockets to IP addresses
         IPs = dict()
         # Now, the main loop.
         while readers:
