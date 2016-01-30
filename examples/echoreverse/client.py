@@ -1,43 +1,18 @@
-# Client example code courtesy of https://pymotw.com/3/select/
+from simpletcp.clientsocket import ClientSocket
 
-import socket
-import sys
+s1 = ClientSocket("localhost", 5000)
+response = s1.send("Hello, World!")
 
-messages = [
-    'This is the message. ',
-    'It will be sent ',
-    'in parts.',
-]
-server_address = ("localhost", 5000)
+s2 = ClientSocket("localhost", 5000, single_use=False)
+r1 = s2.send("Hello for the first time...")
+r2 = s2.send("...and hello for the last!")
+s2.close()
 
-# Create a TCP/IP socket
-socks = [
-    socket.socket(socket.AF_INET, socket.SOCK_STREAM),
-    socket.socket(socket.AF_INET, socket.SOCK_STREAM),
-]
-
-# Connect the socket to the port where the server is listening
-print('connecting to {} port {}'.format(*server_address),
-      file=sys.stderr)
-for s in socks:
-    s.connect(server_address)
-for message in messages:
-    outgoing_data = message.encode()
-
-    # Send messages on both sockets
-    for s in socks:
-        print('{}: sending {!r}'.format(s.getsockname(),
-                                        outgoing_data),
-              file=sys.stderr)
-        s.send(outgoing_data)
-
-    # Read responses on both sockets
-    for s in socks:
-        data = s.recv(1024)
-        print('{}: received {!r}'.format(s.getsockname(),
-                                         data),
-              file=sys.stderr)
-        if not data:
-            print('closing socket', s.getsockname(),
-                  file=sys.stderr)
-            s.close()
+# Display the correspondence
+print("s1 sent\t\tHello, World!")
+print("s1 received\t\t{}".format(response.decode("UTF-8")))
+print("-------------------------------------------------")
+print("s2 sent\t\tHello for the first time....")
+print("s2 received\t\t{}".format(r1.decode("UTF-8")))
+print("s2 sent\t\t...and hello for the last!.")
+print("s2 received\t\t{}".format(r2.decode("UTF-8")))
