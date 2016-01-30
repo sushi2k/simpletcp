@@ -1,5 +1,5 @@
 # simpleTCP
-simpleTCP is a minimal non-blocking TCP server written for Python 3.
+simpleTCP is a minimal non-blocking TCP server written for Python 3. Check out [the Wiki](https://github.com/gragas/simpletcp/wiki) to see what's new.
 
 ### Installation
 
@@ -46,6 +46,17 @@ The `TCPServer` constructor takes three arguments:
 1. The `mode`. There are two special `modes`: `"localhost"` and `"public"`. They are aptly named --- `"localhost"` means run the server on `127.0.0.1`. Therefore, the server is only visible on the machine on which it is running. `"public"` means run the server on `0.0.0.0` --- make it visible to anything that can see the machine on which it is running. If mode is not `"localhost"` or `"public"`, then it is interpreted as an IP address.
 2. The port. For development, pick a high (four-digit) number.
 3. The callback function. This function is called whenever the server receives data.
+
+#### Sending data to the server
+
+To send data to the server, create a `ClientSocket` and send away!
+
+```
+from simpletcp.clientsocket import ClientSocket
+
+s1 = ClientSocket("localhost", 5000, single_use=False)
+response = s1.send("Hello, World!")
+```
 
 ### Examples
 
