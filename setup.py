@@ -10,5 +10,8 @@ setup(name="simpletcp",
       author_email="tdf.tomfischer@gmail.com",
       url="http://gragas.github.io/simpletcp",
       version="1.0.0",
+      license="Apache Version 2.0",
+      description="Simple non-blocking TCP communcation.",
+      keywords="tcp server non-blocking async asynchronous socket",
       py_modules=["simpletcp",]
       )
