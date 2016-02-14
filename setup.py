@@ -7,6 +7,6 @@ except ImportError:
 
 setup(name="simpletcp",
       author="Thomas D. Fischer",
-      version="0.0.1",
+      version="1.0.0",
       py_modules=["simpletcp",]
       )
