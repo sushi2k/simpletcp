@@ -7,6 +7,12 @@ Here's [our beautiful GitHub Pages website](http://gragas.github.io/simpletcp/).
 
 simpleTCP is written in pure Python 3. It has no external dependencies. To install,
 
+`pip install simpletcp`
+
+#### The Bleeding Edge
+
+To install the latest version of simpleTCP,
+
 1. Clone the repository: `git clone https://github.com/gragas/simpletcp`
 2. Install the package: `python3 setup.py install`
 
