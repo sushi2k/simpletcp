@@ -1,7 +1,7 @@
 # simpleTCP
-simpleTCP is a minimal non-blocking TCP server written for Python 3. Check out [the Wiki](https://github.com/gragas/simpletcp/wiki) to see what's new.
+simpleTCP is a minimal non-blocking TCP server written for Python 3. Check out [the Wiki](https://github.com/fschr/simpletcp/wiki) to see what's new.
 
-Here's [our beautiful GitHub Pages website](http://gragas.github.io/simpletcp/).
+Here's [our beautiful GitHub Pages website](http://fschr.github.io/simpletcp/).
 
 ### Installation
 
@@ -13,7 +13,7 @@ simpleTCP is written in pure Python 3. It has no external dependencies. To insta
 
 To install the latest version of simpleTCP,
 
-1. Clone the repository: `git clone https://github.com/gragas/simpletcp`
+1. Clone the repository: `git clone https://github.com/fschr/simpletcp`
 2. Install the package: `python3 setup.py install`
 
 ### Quick Start
