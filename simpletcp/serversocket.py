@@ -1,3 +1,4 @@
+import errno
 import queue
 import select
 import socket
@@ -73,7 +74,15 @@ class ServerSocket:
                     IPs[client_socket] = client_ip
                 else:
                     # Someone sent us something! Let's receive it.
-                    data = sock.recv(self.recv_bytes)
+                    try:
+                        data = sock.recv(self.recv_bytes)
+                    except socket.error as e:
+                        if e.errno is errno.ECONNRESET:
+                            # Consider 'Connection reset by peer'
+                            # the same as reading zero bytes
+                            data = None
+                        else:
+                            raise e
                     if data:
                         # Call the callback
                         self.callback(IPs[sock], queues[sock], data)
