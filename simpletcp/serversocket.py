@@ -77,7 +77,7 @@ class ServerSocket:
                     try:
                         data = sock.recv(self.recv_bytes)
                     except socket.error as e:
-                        if e.errno is errno.ECONNRESET:
+                        if e.errno == errno.ECONNRESET:
                             # Consider 'Connection reset by peer'
                             # the same as reading zero bytes
                             data = None
